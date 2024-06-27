@@ -7,15 +7,15 @@ import moment from 'moment-timezone';
 
 const capitals = [
   { name: 'America/New_York', displayName: 'Washington, D.C.', country: 'USA' },
-  { name: 'Europe/London', displayName: 'London', country: 'UK' },
-  { name: 'Asia/Tokyo', displayName: 'Tokyo', country: 'Japan' },
-  { name: 'Europe/Berlin', displayName: 'Berlin', country: 'Germany' },
-  { name: 'Australia/Sydney', displayName: 'Canberra', country: 'Australia' },
-  { name: 'America/Toronto', displayName: 'Ottawa', country: 'Canada' },
-  { name: 'America/Sao_Paulo', displayName: 'Brasília', country: 'Brazil' },
-  { name: 'Asia/Shanghai', displayName: 'Beijing', country: 'China' },
-  { name: 'Europe/Moscow', displayName: 'Moscow', country: 'Russia' },
-  { name: 'Europe/Paris', displayName: 'Paris', country: 'France' },
+  { name: 'Europe/London', displayName: 'Londres', country: 'Reino Unido' },
+  { name: 'Asia/Tokyo', displayName: 'Tóquio', country: 'Japão' },
+  { name: 'Europe/Berlin', displayName: 'Berlim', country: 'Alemanha' },
+  { name: 'Australia/Sydney', displayName: 'Canberra', country: 'Austrália' },
+  { name: 'America/Toronto', displayName: 'Ottawa', country: 'Canadá' },
+  { name: 'America/Sao_Paulo', displayName: 'Brasília', country: 'Brasil' },
+  { name: 'Asia/Shanghai', displayName: 'Pequim', country: 'China' },
+  { name: 'Europe/Moscow', displayName: 'Moscou', country: 'Rússia' },
+  { name: 'Europe/Paris', displayName: 'Paris', country: 'França' },
 ];
 
 const Capitals = () => {
@@ -53,15 +53,15 @@ const Capitals = () => {
 
   return (
     <div>
-      <h1>Capitals Weather</h1>
+      <h1>Clima das Capitais</h1>
       <ul>
         {weatherData.map((capital, index) => (
           <li key={index}>
             <h2>
               {capital.displayName}, {capital.country}
             </h2>
-            <p>Temperature: {capital.temperature}°C</p>
-            <p>Local Time: {localTimes[capital.name] ? moment(localTimes[capital.name]).format('HH:mm:ss') : 'Loading...'}</p>
+            <p>Temperatura: {capital.temperature}°C</p>
+            <p>Hora Local: {localTimes[capital.name] ? moment(localTimes[capital.name]).format('HH:mm:ss') : 'Carregando...'}</p>
           </li>
         ))}
       </ul>

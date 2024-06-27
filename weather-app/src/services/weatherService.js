@@ -10,7 +10,7 @@ export const getWeather = async (lat, lon) => {
     params: {
       key: API_KEY,
       q: `${lat},${lon}`,
-      days: 5, // Mudamos para 5 dias
+      days: 6, 
       aqi: 'no',
       alerts: 'no',
     },

@@ -1,6 +1,5 @@
-// src/pages/Home.js
-
 import React, { useState, useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { getWeather } from '../services/weatherService';
 import { Line } from 'react-chartjs-2';
@@ -12,6 +11,7 @@ import AsyncSelect from 'react-select/async';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import { translateCondition } from '../components/WeatherConditionTranslator'; // Importar a função de tradução
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -25,6 +25,11 @@ const RecenterMap = ({ lat, lon }) => {
   const map = useMap();
   map.flyTo([lat, lon], 13);
   return null;
+};
+
+RecenterMap.propTypes = {
+  lat: PropTypes.number.isRequired,
+  lon: PropTypes.number.isRequired,
 };
 
 const Home = () => {
@@ -64,19 +69,19 @@ const Home = () => {
   };
 
   const beaufortScale = (windSpeed) => {
-    if (windSpeed < 1) return 'Calm';
-    if (windSpeed <= 5) return 'Light air';
-    if (windSpeed <= 11) return 'Light breeze';
-    if (windSpeed <= 19) return 'Gentle breeze';
-    if (windSpeed <= 28) return 'Moderate breeze';
-    if (windSpeed <= 38) return 'Fresh breeze';
-    if (windSpeed <= 49) return 'Strong breeze';
-    if (windSpeed <= 61) return 'Near gale';
-    if (windSpeed <= 74) return 'Gale';
-    if (windSpeed <= 88) return 'Severe gale';
-    if (windSpeed <= 102) return 'Storm';
-    if (windSpeed <= 117) return 'Violent storm';
-    return 'Hurricane';
+    if (windSpeed < 1) return "Calmo";
+    if (windSpeed <= 5) return "Aragem leve";
+    if (windSpeed <= 11) return "Brisa leve";
+    if (windSpeed <= 19) return "Brisa suave";
+    if (windSpeed <= 28) return "Brisa moderada";
+    if (windSpeed <= 38) return "Brisa fresca";
+    if (windSpeed <= 49) return "Brisa forte";
+    if (windSpeed <= 61) return "Vento forte";
+    if (windSpeed <= 74) return "Ventania";
+    if (windSpeed <= 88) return "Ventania forte";
+    if (windSpeed <= 102) return "Tempestade";
+    if (windSpeed <= 117) return "Tempestade violenta";
+    return "Furacão";
   };
 
   const generateAlerts = (temperature, windSpeed) => {
@@ -89,7 +94,7 @@ const Home = () => {
     }
 
     if (windSpeed > windSpeedThreshold) {
-      alerts.push(`Alerta de Ventania: ${windSpeed} km/h (${beaufortScale(windSpeed)})`);
+      alerts.push(`Alerta de Ventania: ${windSpeed} km/h`);
     }
 
     setAlerts(alerts);
@@ -114,16 +119,18 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Weather App</h1>
       <div>
         <label>
-          City:
-          <AsyncSelect cacheOptions loadOptions={fetchCitySuggestions} onChange={handleCityChange} placeholder='Search for a city...' isClearable />
+          Pesquise a cidade:
+          <AsyncSelect className="async-select-container" cacheOptions loadOptions={fetchCitySuggestions} onChange={handleCityChange} placeholder='Digite a cidade...' isClearable />
         </label>
       </div>
-      <button onClick={handleSearch}>Search</button>
-      <button onClick={() => navigate('/capitals')}>View Capitals Weather</button>
+      <div className="button-container">
+        <button onClick={() => navigate('/capitals')}>Ver Clima das Capitais</button>
+        <button onClick={handleSearch}>Buscar</button>
+      </div>
       {alerts.length > 0 && (
         <div className='alerts'>
           {alerts.map((alert, index) => (
@@ -137,28 +144,29 @@ const Home = () => {
         {weather && (
           <div>
             <h2>{weather.location.name}</h2>
-            <p>Temperature: {weather.current.temp_c}°C</p>
-            <p>Max Temperature: {weather.forecast.forecastday[0].day.maxtemp_c}°C</p>
-            <p>Min Temperature: {weather.forecast.forecastday[0].day.mintemp_c}°C</p>
-            <p>Condition: {weather.current.condition.text}</p>
-            <p>Humidity: {weather.current.humidity}%</p>
-            <p>Precipitation: {weather.current.precip_mm} mm</p>
-            <p>Cloud: {weather.current.cloud}%</p>
-            <p>UV Index: {weather.current.uv}</p>
-            <p>Sunrise: {weather.forecast.forecastday[0].astro.sunrise}</p>
-            <p>Sunset: {weather.forecast.forecastday[0].astro.sunset}</p>
-            <p>Wind Speed: {weather.current.wind_kph} km/h</p>
-            <p>Wind Description: {beaufortScale(weather.current.wind_kph)}</p>
-            <h3>Forecast:</h3>
-            {weather.forecast.forecastday.map((day) => (
+            <p>Temperatura Atual: {weather.current.temp_c}°C</p>
+            <p>Temperatura Máxima: {weather.forecast.forecastday[0].day.maxtemp_c}°C</p>
+            <p>Temperatura Mínima: {weather.forecast.forecastday[0].day.mintemp_c}°C</p>
+            <p>Condição: {translateCondition(weather.current.condition.text)}</p> {/* Tradução da condição */}
+            <p>Umidade: {weather.current.humidity}%</p>
+            <p>Precipitação: {weather.current.precip_mm} mm</p>
+            <p>Nuvens: {weather.current.cloud}%</p>
+            <p>Índice UV: {weather.current.uv}</p>
+            <p>Nascer do Sol: {weather.forecast.forecastday[0].astro.sunrise}</p>
+            <p>Pôr do Sol: {weather.forecast.forecastday[0].astro.sunset}</p>
+            <p>Velocidade do Vento: {weather.current.wind_kph} km/h</p>
+            <p>Descrição do Vento: {beaufortScale(weather.current.wind_kph)}</p>
+            <h3>Previsão:</h3>
+            {weather.forecast.forecastday.slice(1, 6).map((day) => (
               <div key={day.date}>
-                <p>Date: {day.date}</p>
-                <p>Max Temp: {day.day.maxtemp_c}°C</p>
-                <p>Min Temp: {day.day.mintemp_c}°C</p>
-                <p>Condition: {day.day.condition.text}</p>
+                <p>Data: {day.date}</p>
+                <p>Temp. Máxima: {day.day.maxtemp_c}°C</p>
+                <p>Temp. Mínima: {day.day.mintemp_c}°C</p>
+                <p>Condição: {translateCondition(day.day.condition.text)}</p> {/* Tradução da condição */}
               </div>
             ))}
             <div className='chart-container'>
+              <h3>Gráfico de Temperatura</h3>
               <Line data={getTemperatureChartData()} />
             </div>
           </div>
@@ -166,13 +174,16 @@ const Home = () => {
       </div>
       <div id='map' className='map-container'>
         {weather && (
-          <MapContainer center={[weather.location.lat, weather.location.lon]} zoom={13} style={{ height: '100%', width: '100%' }} ref={mapRef}>
-            <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
-            <Marker position={[weather.location.lat, weather.location.lon]}>
-              <Popup>{weather.location.name}</Popup>
-            </Marker>
-            <RecenterMap lat={weather.location.lat} lon={weather.location.lon} />
-          </MapContainer>
+          <div>
+            <h3>Mapa</h3>
+            <MapContainer center={[weather.location.lat, weather.location.lon]} zoom={13} style={{ height: '400px', width: '100%' }} ref={mapRef}>
+              <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
+              <Marker position={[weather.location.lat, weather.location.lon]}>
+                <Popup>{weather.location.name}</Popup>
+              </Marker>
+              <RecenterMap lat={weather.location.lat} lon={weather.location.lon} />
+            </MapContainer>
+          </div>
         )}
       </div>
     </div>
