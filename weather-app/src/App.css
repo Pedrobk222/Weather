@@ -1,0 +1,46 @@
+/* src/App.css */
+
+.App {
+  text-align: center;
+}
+
+label {
+  margin-right: 10px;
+}
+
+button {
+  margin-top: 10px;
+}
+
+#weather-info {
+  margin-top: 20px;
+}
+
+#weather-info > div {
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  width: 80%;
+  max-width: 800px;
+  margin: auto;
+}
+
+.map-container {
+  width: 80%;
+  height: 400px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.alerts {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid red;
+  background-color: #ffe6e6;
+}
+
+.alert {
+  color: red;
+  font-weight: bold;
+}
