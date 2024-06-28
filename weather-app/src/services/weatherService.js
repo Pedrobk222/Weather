@@ -5,7 +5,7 @@ A função retorna os dados da previsão do tempo. */
 import axios from 'axios';
 
 const API_KEY = 'f50db686537646e7a8f125646242706';
-const BASE_URL = 'http://api.weatherapi.com/v1';
+const BASE_URL = 'https://api.weatherapi.com/v1';
 
 export const getWeather = async (lat, lon) => {
   const response = await axios.get(`${BASE_URL}/forecast.json`, {
