@@ -44,7 +44,7 @@ Weather App Brasil é uma aplicação web desenvolvida para fornecer informaçõ
 
 1. Baixe o repositório:
 
-- https://github.com/Pedrobk222/Water-Weather.git
+- https://github.com/Pedrobk222/Weather.git
 
 2. Navegue até o diretório:
 
