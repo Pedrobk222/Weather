@@ -48,7 +48,7 @@ Weather App Brasil é uma aplicação web desenvolvida para fornecer informaçõ
 
 2. Navegue até o diretório:
 
-- Water-Weather/weather-app$
+- Weather/weather-app$
 
 3. Execute os comandos:
 
