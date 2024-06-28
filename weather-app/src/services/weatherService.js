@@ -1,4 +1,6 @@
-// src/services/weatherService.js
+/* O código define uma função getWeather que usa a biblioteca axios para fazer uma requisição a WeatherAPI, 
+obtendo a previsão do tempo para uma localização específica baseada em latitude e longitude. 
+A função retorna os dados da previsão do tempo. */
 
 import axios from 'axios';
 
@@ -10,7 +12,7 @@ export const getWeather = async (lat, lon) => {
     params: {
       key: API_KEY,
       q: `${lat},${lon}`,
-      days: 6, 
+      days: 8,
       aqi: 'no',
       alerts: 'no',
     },
