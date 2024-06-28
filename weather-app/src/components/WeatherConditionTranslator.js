@@ -4,6 +4,7 @@ const weatherConditions = {
   Sunny: 'Ensolarado',
   Clear: 'Limpo',
   'Partly Cloudy ': 'Parcialmente nublado',
+  'Partly cloudy': 'Parcialmente nublado',
   Cloudy: 'Nublado',
   Overcast: 'Encoberto',
   'Patchy rain nearby': 'Chuva irregular nas proximidades',
