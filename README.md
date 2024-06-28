@@ -29,7 +29,8 @@ Weather App Brasil é uma aplicação web desenvolvida para fornecer informaçõ
 - **WeatherAPI**: API utilizada para obter dados climáticos.
 - **OpenStreetMap**: Utilizado para a exibição do mapa interativo.
 - **Nominatim API**: Serviço de geocodificação para obter coordenadas de cidades.
-
+- **ESLint**: Ferramenta para padronização e análise do código.
+  
 ### APIs Utilizadas
 
 - WeatherAPI: A WeatherAPI é utilizada para fornecer dados climáticos detalhados, incluindo previsões diárias e horárias. Através desta API, a aplicação obtém informações como temperatura atual, máxima e mínima, umidade, velocidade do vento, índice UV, condições climáticas e horários de nascer e pôr do sol.
