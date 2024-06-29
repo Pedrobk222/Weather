@@ -9,7 +9,7 @@
 
 ## Descrição do Projeto
 
-Weather App Brasil é uma aplicação web desenvolvida para fornecer informações detalhadas sobre o clima de diversas cidades do Brasil e capitais do mundo. A aplicação oferece previsões diárias e horárias, além de exibir dados relevantes como temperatura, umidade, velocidade do vento, e mais. Também inclui um mapa interativo que mostra a localização da cidade pesquisada. As previsões são atualizadas a cada 5 minutos, e caso a temperatura ultrapasse 30°C e o vento passe de 50 km/h ele gera alertas para o usuário.
+- Weather App Brasil é uma aplicação web desenvolvida para fornecer informações detalhadas sobre o clima de diversas cidades do Brasil e capitais do mundo. A aplicação oferece previsões diárias e horárias, além de exibir dados relevantes como temperatura, umidade, velocidade do vento, e mais. Também inclui um mapa interativo que mostra a localização da cidade pesquisada. As previsões são atualizadas a cada 5 minutos, e caso a temperatura ultrapasse 30°C e o vento passe de 50 km/h ele gera alertas para o usuário.
 
 ## Funcionalidades
 
