@@ -5,6 +5,7 @@
 ## Autor
 
 Pedro Henrique Bortolucci Klayn
+pedro.bortolucci1.ph@gmail.com
 
 ## Descrição do Projeto
 
