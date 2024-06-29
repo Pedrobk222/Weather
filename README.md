@@ -68,6 +68,7 @@ Weather App Brasil é uma aplicação web desenvolvida para fornecer informaçõ
 - src/pages/Capitals.js: Página que exibe a previsão do tempo das capitais do mundo.
 - src/services/nominatimService.js: Serviço para obter coordenadas de cidades usando Nominatim.
 - src/services/timeService.js: Serviço para obter o horário local das capitais.
+- src/services/weatherService.js: Serviço para fazer uma requisição à WeatherAPI e obter dados climáticos detalhados.
 - src/components/WeatherConditionTranslator.js: Componente para traduzir as condições climáticas.
 - src/App.css: Estilização da página.
 
