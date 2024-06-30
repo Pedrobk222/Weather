@@ -31,6 +31,7 @@
 - **OpenStreetMap**: Utilizado para a exibição do mapa interativo.
 - **Nominatim API**: Serviço de geocodificação para obter coordenadas de cidades.
 - **ESLint**: Ferramenta para padronização e análise do código.
+- **Vercel**: Plataforma para deploy e hospedagem de aplicações web.
   
 ### APIs Utilizadas
 
