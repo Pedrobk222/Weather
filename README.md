@@ -38,6 +38,18 @@
   
 - Nominatim API: Quando o usuário digita o nome de uma cidade, a Nominatim API é chamada para encontrar as coordenadas correspondentes. As coordenadas retornadas são então usadas para fazer uma chamada à WeatherAPI e obter os dados climáticos para a localização especificada.
 
+  ### Fluxo de Trabalho
+
+  - Busca de Cidade: O usuário pesquisa por uma cidade utilizando o campo de busca.
+
+  - Geocodificação: A Nominatim API é consultada com o nome da cidade para obter as coordenadas geográficas.
+
+  - Obtenção de Dados Climáticos: Com as coordenadas, a WeatherAPI é consultada para obter as informações climáticas detalhadas.
+
+  - Exibição de Dados: Os dados climáticos são exibidos na interface do usuário, incluindo gráficos e mapas interativos.
+ 
+  - Essa integração entre as APIs permite fornecer ao usuário informações precisas e detalhadas sobre a cidade pesquisada e seu clima.
+
 ## Instalação e Execução
 
 ### Pré-requisitos
