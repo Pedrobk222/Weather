@@ -34,7 +34,8 @@
   
 ### APIs Utilizadas
 
-- WeatherAPI: A WeatherAPI é utilizada para fornecer dados climáticos detalhados, incluindo previsões diárias e horárias. Através desta API, a aplicação obtém informações como temperatura atual, máxima e mínima, umidade, velocidade do vento, índice UV, condições climáticas e horários de nascer e pôr do sol.
+- WeatherAPI: A WeatherAPI é utilizada para fornecer dados climáticos detalhados, incluindo previsões diárias e horárias. Através desta API, a aplicação obtém informações como temperatura atual, máxima e mínima, umidade, velocidade do vento, índice UV, condições climáticas e horários de nascer e pôr do sol. Para obter os dados desta API, deve-se cadastrar com e-mail e senha no site oficial, assim, gerando uma key de acesso.
+  
 - Nominatim API: Quando o usuário digita o nome de uma cidade, a Nominatim API é chamada para encontrar as coordenadas correspondentes. As coordenadas retornadas são então usadas para fazer uma chamada à WeatherAPI e obter os dados climáticos para a localização especificada.
 
 ## Instalação e Execução
