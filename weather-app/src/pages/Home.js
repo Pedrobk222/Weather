@@ -228,8 +228,9 @@ const Home = () => {
             <div className='forecast-daily'>
               <h3>Previsão Diária</h3>
               <div className='forecast-daily-cards'>
-                {weather.forecast.forecastday.slice(2, 8).map((day) => {
-                  const date = new Date(day.date);
+                {weather.forecast.forecastday.map((day, index) => {
+                  // Crie uma nova data a partir da string e ajuste para o formato correto
+                  const date = new Date(day.date + 'T00:00:00');
                   const formattedDate = date.toLocaleDateString('pt-BR');
 
                   return (
