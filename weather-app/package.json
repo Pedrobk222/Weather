@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.2",
     "chart.js": "^4.4.3",
+    "dotenv": "^16.4.5",
     "leaflet": "^1.9.4",
     "moment-timezone": "^0.5.45",
     "prop-types": "^15.8.1",

@@ -1,21 +1,33 @@
-/* A função getCoordinates busca as coordenadas geográficas de uma cidade e estado no Brasil usando o serviço Nominatim do OpenStreetMap. 
-Ela retorna as coordenadas da correspondência exata, se encontrada, ou do primeiro resultado, se não houver uma correspondência exata. 
-Se não houver resultados, a função retorna um erro. */
+// nominatimService.js
 
-export const getCoordinates = async (city, state) => {
-  const response = await fetch(`https://nominatim.openstreetmap.org/search?city=${city}&state=${state}&country=Brazil&format=json`);
-  const data = await response.json();
-  if (data.length > 0) {
-    const exactMatch = data.find((location) => location.display_name.includes(city) && location.display_name.includes(state));
-    if (exactMatch) {
-      const { lat, lon } = exactMatch;
-      return { lat, lon };
-    } else {
-      // Se não houver correspondência exata, usar o primeiro resultado
-      const { lat, lon } = data[0];
-      return { lat, lon };
+/**
+ * Busca sugestões de cidades no Brasil usando o serviço Nominatim do OpenStreetMap.
+ * @param {string} inputValue - Parte do nome da cidade.
+ * @returns {Promise<Array<{value: string, label: string, lat: string, lon: string}>>} - Lista de sugestões de cidades.
+ * @throws {Error} - Lança um erro se ocorrer um problema na chamada da API.
+ */
+export const fetchCitySuggestions = async (inputValue) => {
+  if (!inputValue) return [];
+
+  try {
+    const response = await fetch(`https://nominatim.openstreetmap.org/search?city=${inputValue}&country=Brazil&format=json`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
     }
-  } else {
-    throw new Error('Location not found');
+
+    const data = await response.json();
+    return data.map((location) => {
+      const address = location.display_name.split(',');
+      const city = address[0].trim();
+      const state = address[1].trim();
+      return {
+        value: location.display_name,
+        label: `${city}, ${state}`,
+        lat: location.lat,
+        lon: location.lon,
+      };
+    });
+  } catch (error) {
+    throw new Error(`Error fetching city suggestions: ${error.message}`);
   }
 };

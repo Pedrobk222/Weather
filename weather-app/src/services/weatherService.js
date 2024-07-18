@@ -4,7 +4,7 @@ A função retorna os dados da previsão do tempo. */
 
 import axios from 'axios';
 
-const API_KEY = 'f50db686537646e7a8f125646242706';
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 const BASE_URL = 'https://api.weatherapi.com/v1';
 
 export const getWeather = async (lat, lon) => {
@@ -12,7 +12,7 @@ export const getWeather = async (lat, lon) => {
     params: {
       key: API_KEY,
       q: `${lat},${lon}`,
-      days: 8,
+      days: 3,
       aqi: 'no',
       alerts: 'no',
     },

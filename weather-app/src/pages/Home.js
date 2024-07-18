@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { fetchCitySuggestions } from '../services/nominatimService';
 import { getWeather } from '../services/weatherService';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
@@ -47,24 +48,6 @@ const Home = () => {
   // Função para tratar a mudança de cidade selecionada
   const handleCityChange = (selectedOption) => {
     setCity(selectedOption);
-  };
-
-  // Função para buscar sugestões de cidades
-  const fetchCitySuggestions = async (inputValue) => {
-    if (!inputValue) return [];
-    const response = await fetch(`https://nominatim.openstreetmap.org/search?city=${inputValue}&country=Brazil&format=json`);
-    const data = await response.json();
-    return data.map((location) => {
-      const address = location.display_name.split(',');
-      const city = address[0].trim();
-      const state = address[1].trim();
-      return {
-        value: location.display_name,
-        label: `${city}, ${state}`,
-        lat: location.lat,
-        lon: location.lon,
-      };
-    });
   };
 
   // Função para buscar dados do tempo da cidade selecionada
